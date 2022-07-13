@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML 5 Boilerplate</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<style>
+  body {
+    background-image: url('mountain.jpg');
+    height: 150vh;
+    /* Used if the image is unavailable */
+    /* You must set a specified height */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
+  }
+
+  .header h1 {
+    font-size: 80px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .header {
+    position: relative;
+    height: 100vh;
+  }
+
+  .contact {
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact span {
+    font-size: 50px;
+  }
+
+  .circle {
+    height: 0;
+    overflow: hidden;
+    transition: height .5s;
+    line-height: 1;
+    border: 1px solid transparent;
+    transition: border .5s, height .5s;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .circle.reveal {
+    height: 57px;
+    padding: 40px;
+  }
+
+  :root {
+    --color: aqua;
+  }
+
+  .circle:hover {
+    border-color: #fff;
+  }
+</style>
+
+<body>
+  <div class="header">
+    <h1>Everyday</h1>
+  </div>
+  <div class="contact">
+    <div class="circle">
+      <span class="text">contact@everydayfilms.com</span>
+    </div>
+  </div>
+  <script>
+    window.onscroll = function (ev) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        document.querySelector('.circle').classList.add('reveal');
+        // you're at the bottom of the page
+      }
+    };
+
+  </script>
+</body>
+
+</html>
