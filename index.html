@@ -82,7 +82,14 @@
     </div>
   </div>
   <script>
+    var lastScrollTop = window.pageYOffset;
+
     window.onscroll = function (ev) {
+      var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+      if (st > lastScrollTop) {
+      } else {
+        document.querySelector('.circle').classList.remove('reveal');
+      }
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         document.querySelector('.circle').classList.add('reveal');
         // you're at the bottom of the page
