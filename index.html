@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-  <title>HTML 5 Boilerplate</title>
+  <title>Everyday</title>
   <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <style>
@@ -17,12 +17,18 @@
       url(assets/fonts/PantasiaNovusBeta6-RegularWeb.ttf)
   }
 
-  body {
+  .bg {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    transition: background-image .5s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    transition: opacity .5s;
   }
 
   .header {
@@ -71,28 +77,29 @@
   .circle:hover {
     background-image: url(assets/circle/circle-01.svg);
   }
+
+  video {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+  }
 </style>
 
 <body>
-  <main>
-    <div class="header">
-      <img src="assets/EVERYDAY-logo-white.svg" />
+  <div class="bg">
+  </div>
+  <div class="header">
+    <img src="assets/EVERYDAY-logo-white.svg" />
+  </div>
+  <div class="contact">
+    <div class="circle">
+      <span class="text">contact@everydayfilms.com</span>
     </div>
-    <div class="contact">
-      <div class="circle">
-        <span class="text">contact@everydayfilms.com</span>
-      </div>
-    </div>
-  </main>
+  </div>
   <script>
     var lastScrollTop = window.pageYOffset;
 
     window.onscroll = function (ev) {
-      // var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-      // if (st > lastScrollTop) {
-      // } else {
-      // }
-      //   // print "false" if direction is down and "true" if up
       if (this.oldScroll > this.scrollY) {
         console.log('up');
         document.querySelector('.circle').classList.remove('reveal');
@@ -112,11 +119,36 @@
 
     client.getEntries().then(function (entries) {
       const items = entries.items;
-      const bgImage = items[0].fields.image.fields.file.url;
+      var item = items[Math.floor(Math.random() * items.length)];
+      const bgImage = item.fields.image.fields.file.url; 
 
-      var img = new Image();
-      img.src = `https:${bgImage}`;
-      img.onload = function () { document.querySelector('body').style.backgroundImage = `url(https:${bgImage})`; console.log('loaded') }
+      if (item.fields.image.fields.file.contentType === 'image/jpeg') {
+        var img = new Image();
+        img.src = `https:${bgImage}`;
+        img.onload = function () {
+          document.querySelector('.bg').style.backgroundImage = `url(https:${bgImage})`; console.log('loaded')
+          document.querySelector('.bg').style.opacity = 1;
+        }
+      }
+      else {
+        const videoSrc = item.fields.image.fields.file.url;
+        const video = document.createElement('video');
+        // 👇️ Remote file
+        video.src = `https://${videoSrc}`
+
+        video.poster =
+          'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217';
+
+        video.autoplay = true;
+        video.controls = false;
+        video.muted = true;
+        video.loop = true;
+
+        const box = document.querySelector('.bg');
+        box.appendChild(video);
+
+        document.querySelector('.bg').style.opacity = 1;
+      }
     });
   </script>
 </body>
