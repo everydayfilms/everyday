@@ -5,34 +5,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
   <title>HTML 5 Boilerplate</title>
   <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <style>
-  body {
-    background-image: url('mountain.jpg');
-    height: 150vh;
-    /* Used if the image is unavailable */
-    /* You must set a specified height */
-    background-position: center;
-    /* Center the image */
-    background-repeat: no-repeat;
-    /* Do not repeat the image */
-    background-size: cover;
-    /* Resize the background image to cover the entire container */
+  @font-face {
+    font-family: Pantasia;
+    src: url(assets/fonts/PantasiaNovusBeta6-RegularWeb.woff),
+      url(assets/fonts/PantasiaNovusBeta6-RegularWeb.woff2),
+      url(assets/fonts/PantasiaNovusBeta6-RegularWeb.ttf)
   }
 
-  .header h1 {
-    font-size: 80px;
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+  body {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-image .5s;
   }
 
   .header {
     position: relative;
-    height: 100vh;
+    height: 160vh;
+  }
+
+  .header img {
+    position: absolute;
+    bottom: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
   }
 
   .contact {
@@ -44,58 +47,77 @@
   }
 
   .contact span {
+    color: #fff;
+    font-family: Pantasia;
     font-size: 50px;
+    text-transform: uppercase;
   }
 
   .circle {
     height: 0;
     overflow: hidden;
-    transition: height .5s;
-    line-height: 1;
-    border: 1px solid transparent;
-    transition: border .5s, height .5s;
-    border-radius: 50%;
     cursor: pointer;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: height .5s, padding .5s;
   }
 
   .circle.reveal {
     height: 57px;
-    padding: 40px;
-  }
-
-  :root {
-    --color: aqua;
+    padding: 20px;
   }
 
   .circle:hover {
-    border-color: #fff;
+    background-image: url(assets/circle/circle-01.svg);
   }
 </style>
 
 <body>
-  <div class="header">
-    <h1>Everyday</h1>
-  </div>
-  <div class="contact">
-    <div class="circle">
-      <span class="text">contact@everydayfilms.com</span>
+  <main>
+    <div class="header">
+      <img src="assets/EVERYDAY-logo-white.svg" />
     </div>
-  </div>
+    <div class="contact">
+      <div class="circle">
+        <span class="text">contact@everydayfilms.com</span>
+      </div>
+    </div>
+  </main>
   <script>
     var lastScrollTop = window.pageYOffset;
 
     window.onscroll = function (ev) {
-      var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-      if (st > lastScrollTop) {
-      } else {
+      // var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+      // if (st > lastScrollTop) {
+      // } else {
+      // }
+      //   // print "false" if direction is down and "true" if up
+      if (this.oldScroll > this.scrollY) {
+        console.log('up');
         document.querySelector('.circle').classList.remove('reveal');
       }
+
+      this.oldScroll = this.scrollY;
+
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         document.querySelector('.circle').classList.add('reveal');
-        // you're at the bottom of the page
       }
     };
 
+    var client = contentful.createClient({
+      space: '1p3nw30b1ug0',
+      accessToken: 'jmJkXiu9k0fvI20LkbAAtvba9pUylEwhIB-qiNZKzF4'
+    })
+
+    client.getEntries().then(function (entries) {
+      const items = entries.items;
+      const bgImage = items[0].fields.image.fields.file.url;
+
+      var img = new Image();
+      img.src = `https:${bgImage}`;
+      img.onload = function () { document.querySelector('body').style.backgroundImage = `url(https:${bgImage})`; console.log('loaded') }
+    });
   </script>
 </body>
 
