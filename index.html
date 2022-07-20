@@ -5,85 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/svg+xml" href="assets/E-logo-black.svg">
   <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
   <title>Everyday</title>
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<style>
-  @font-face {
-    font-family: Pantasia;
-    src: url(assets/fonts/PantasiaNovusBeta6-RegularWeb.woff),
-      url(assets/fonts/PantasiaNovusBeta6-RegularWeb.woff2),
-      url(assets/fonts/PantasiaNovusBeta6-RegularWeb.ttf)
-  }
-
-  .bg {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    opacity: 0;
-    transition: opacity .5s;
-  }
-
-  .header {
-    position: relative;
-    height: 160vh;
-  }
-
-  .header img {
-    position: absolute;
-    bottom: 40%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-  }
-
-  .contact {
-    position: fixed;
-    bottom: 50px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .contact span {
-    color: #fff;
-    font-family: Pantasia;
-    font-size: 50px;
-    text-transform: uppercase;
-  }
-
-  .circle {
-    height: 0;
-    overflow: hidden;
-    cursor: pointer;
-    background-image: none;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: height .5s, padding .5s;
-  }
-
-  .circle.reveal {
-    height: 57px;
-    padding: 20px;
-  }
-
-  .circle:hover {
-    background-image: url(assets/circle/circle-01.svg);
-  }
-
-  video {
-    height: 100%;
-    width: 100%;
-    object-fit: fill;
-  }
-</style>
 
 <body>
   <div class="bg">
@@ -93,11 +19,18 @@
   </div>
   <div class="contact">
     <div class="circle">
-      <span class="text">contact@everydayfilms.com</span>
+      <a class="text">contact@everydayfilms.com</a>
+    </div>
+    <div class="circle-bg">
     </div>
   </div>
   <script>
     var lastScrollTop = window.pageYOffset;
+    var circles = ['circle-01.svg', 'circle-02.svg', 'circle-03.svg', 'circle-04.svg', 'circle-05.svg', 'circle-06.svg'];
+    var circle = circles[Math.floor(Math.random() * circles.length)];
+    var circle = circles[0];
+
+    document.querySelector('.circle-bg').style.backgroundImage = `url(assets/circle/${circle}`;
 
     window.onscroll = function (ev) {
       if (this.oldScroll > this.scrollY) {
@@ -107,8 +40,11 @@
 
       this.oldScroll = this.scrollY;
 
+      console.log(this.scrollY);
+
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         document.querySelector('.circle').classList.add('reveal');
+        // document.querySelector('body').style.overflow = 'hidden';
       }
     };
 
@@ -120,7 +56,7 @@
     client.getEntries().then(function (entries) {
       const items = entries.items;
       var item = items[Math.floor(Math.random() * items.length)];
-      const bgImage = item.fields.image.fields.file.url; 
+      const bgImage = item.fields.image.fields.file.url;
 
       if (item.fields.image.fields.file.contentType === 'image/jpeg') {
         var img = new Image();
