@@ -8,6 +8,7 @@
 body {
     max-width: 1600px;
     margin: 0 auto;
+    z-index: 0;
 }
 
 .bg {
@@ -22,6 +23,7 @@ body {
     width: 100vw;
     opacity: 0;
     transition: opacity 0.5s;
+    z-index: -10;
 }
 
 .header {
@@ -84,12 +86,12 @@ body {
 video {
     height: 100%;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 @media screen and (min-width: 53em) {
-    .contact {
-        /* left: 0; */
+    video {
+        object-fit: fill;
     }
 
     .contact .text {
