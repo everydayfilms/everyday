@@ -42,9 +42,8 @@
 
       console.log(this.scrollY);
 
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      if ((window.innerHeight + window.scrollY + 100) >= document.body.offsetHeight) {
         document.querySelector('.circle').classList.add('reveal');
-        // document.querySelector('body').style.overflow = 'hidden';
       }
     };
 
