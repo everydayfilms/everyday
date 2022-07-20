@@ -26,7 +26,7 @@ body {
 .header {
     position: relative;
     pointer-events: none;
-    height: 160vh;
+    height: 150vh;
 }
 
 .header img {
