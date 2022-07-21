@@ -30,7 +30,7 @@ body {
 
 .header img {
     position: absolute;
-    bottom: 75vh;
+    bottom: 85vh;
     left: 50%;
     transform: translateX(-50%);
     width: 95%;
@@ -61,9 +61,12 @@ body {
     z-index: 1;
 }
 
+.circle a {
+    padding: 20px;
+}
+
 .circle.reveal {
     height: 57px;
-    padding: 20px;
 }
 
 .circle-bg {
