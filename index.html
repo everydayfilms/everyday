@@ -19,13 +19,12 @@
   </div>
   <div class="contact">
     <div class="circle">
-      <a class="text">contact@everydayfilms.com</a>
+      <a href="mailto:contact@everydayfilms.com" class="text">contact@everydayfilms.com</a>
     </div>
     <div class="circle-bg">
     </div>
   </div>
   <script>
-    var lastScrollTop = window.pageYOffset;
     var circles = ['circle-01.svg', 'circle-02.svg', 'circle-03.svg', 'circle-04.svg', 'circle-05.svg', 'circle-06.svg'];
     var circle = circles[Math.floor(Math.random() * circles.length)];
     var circle = circles[0];
@@ -34,13 +33,10 @@
 
     window.onscroll = function (ev) {
       if (this.oldScroll > this.scrollY) {
-        console.log('up');
         document.querySelector('.circle').classList.remove('reveal');
       }
 
       this.oldScroll = this.scrollY;
-
-      console.log(this.scrollY);
 
       if ((window.innerHeight + window.scrollY + 100) >= document.body.offsetHeight) {
         document.querySelector('.circle').classList.add('reveal');
@@ -53,21 +49,21 @@
     })
 
     client.getEntries().then(function (entries) {
-      const items = entries.items;
+      var items = entries.items;
       var item = items[Math.floor(Math.random() * items.length)];
-      const bgImage = item.fields.image.fields.file.url;
+      var bgImage = item.fields.image.fields.file.url;
 
       if (item.fields.image.fields.file.contentType === 'image/jpeg') {
         var img = new Image();
         img.src = `https:${bgImage}`;
         img.onload = function () {
-          document.querySelector('.bg').style.backgroundImage = `url(https:${bgImage})`; console.log('loaded')
+          document.querySelector('.bg').style.backgroundImage = `url(https:${bgImage})`;
           document.querySelector('.bg').style.opacity = 1;
         }
       }
       else {
-        const videoSrc = item.fields.image.fields.file.url;
-        const video = document.createElement('video');
+        var videoSrc = item.fields.image.fields.file.url;
+        var video = document.createElement('video');
         // 👇️ Remote file
         video.src = `https://${videoSrc}`
 
@@ -79,7 +75,7 @@
         video.muted = true;
         video.loop = true;
 
-        const box = document.querySelector('.bg');
+        var box = document.querySelector('.bg');
         box.appendChild(video);
 
         document.querySelector('.bg').style.opacity = 1;
