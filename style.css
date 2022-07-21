@@ -77,6 +77,7 @@ body {
     height: 100px;
     position: absolute;
     display: none;
+    top: -20px;
 }
 
 .circle:hover + .circle-bg {
@@ -101,7 +102,7 @@ video {
     .header {
         height: 150vh;
     }
-    
+
     .header img {
         bottom: 36%;
     }
