@@ -25,7 +25,7 @@ body {
 .header {
     position: relative;
     pointer-events: none;
-    height: 150vh;
+    height: 180vh;
 }
 
 .header img {
@@ -98,6 +98,10 @@ video {
         font-size: 50px;
     }
 
+    .header {
+        height: 150vh;
+    }
+    
     .header img {
         bottom: 36%;
     }
