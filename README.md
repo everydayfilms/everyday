@@ -1,5 +1,5 @@
 ## To update data on contentful 
-1.) Create an account on Contentfu <br/>
+1.) Create an account on Contentful <br/>
 2.) Click "Content Model" <br />
 3.) then "Add field" <br />
 4.) then "Media" <br />
