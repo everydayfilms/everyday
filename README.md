@@ -4,9 +4,9 @@
 3.) then "Add field" <br />
 4.) then "Media" <br />
 5.) Add name and click "Create" <br />
-6.) Click "Content" <br/ >
-7.) Add Entry <br/>
-8.) Upload image <br/>
+6.) Click "Content" <br />
+7.) Add Entry <br />
+8.) Upload image <br />
 
 ## To get API keys
 1.) Click Settings <br/>
