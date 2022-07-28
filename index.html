@@ -50,18 +50,20 @@
 
     client.getEntries().then(function (entries) {
       var items = entries.items;
-      var item = items[Math.floor(Math.random() * items.length)];
 
       var email;
-      items.forEach(item => {
+      items.forEach((item, i) => {
         if ("email" in item.fields) {
           document.querySelector('.contact .text').textContent = item.fields.email;
           document.querySelector('.contact .text').href = "mailto:" + item.fields.email;
+          items.splice(i, 1);
         }
       });
 
+      console.log(items);
+      var item = items[Math.floor(Math.random() * items.length)];
 
-      if (item.fields && item.fields.image.fields.file.contentType === 'image/jpeg') {
+      if (item.fields.image.fields.file.contentType === 'image/jpeg') {
         var bgImage = item.fields.image.fields.file.url;
         var img = new Image();
         img.src = `https:${bgImage}`;
@@ -70,15 +72,11 @@
           document.querySelector('.bg').style.opacity = 1;
         }
       }
-      else if (item.fields && item.fields.image.fields.file.contentType === 'video/mp4') {
+      else if (item.fields.image.fields.file.contentType === 'video/mp4') {
         var videoSrc = item.fields.image.fields.file.url;
         var video = document.createElement('video');
         // 👇️ Remote file
         video.src = `https://${videoSrc}`
-
-        video.poster =
-          'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217';
-
         video.autoplay = true;
         video.controls = false;
         video.muted = true;
