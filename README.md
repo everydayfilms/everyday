@@ -1,4 +1,4 @@
-To update data on contentful
+To update data on contentful 
 1.) Create an account
 2.) Click "Content Model"
 3.) then "Add field"

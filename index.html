@@ -19,7 +19,7 @@
   </div>
   <div class="contact">
     <div class="circle">
-      <a href="mailto:contact@everydayfilms.com" class="text">contact@everydayfilms.com</a>
+      <a class="text"></a>
     </div>
     <div class="circle-bg">
     </div>
@@ -53,6 +53,15 @@
       var item = items[Math.floor(Math.random() * items.length)];
       var bgImage = item.fields.image.fields.file.url;
 
+      var email;
+      items.forEach(item => {
+        if ("email" in item.fields) {
+          document.querySelector('.contact .text').textContent = item.fields.email;
+          document.querySelector('.contact .text').href = "mailto:" + item.fields.email;
+        }
+      });
+
+
       if (item.fields.image.fields.file.contentType === 'image/jpeg') {
         var img = new Image();
         img.src = `https:${bgImage}`;
@@ -61,7 +70,7 @@
           document.querySelector('.bg').style.opacity = 1;
         }
       }
-      else {
+      else if (item.fields.image.fields.file.contentType === 'video/mp4') {
         var videoSrc = item.fields.image.fields.file.url;
         var video = document.createElement('video');
         // 👇️ Remote file
