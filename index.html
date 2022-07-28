@@ -61,7 +61,7 @@
       });
 
 
-      if (item.fields.image.fields.file.contentType === 'image/jpeg') {
+      if (item.fields && item.fields.image.fields.file.contentType === 'image/jpeg') {
         var bgImage = item.fields.image.fields.file.url;
         var img = new Image();
         img.src = `https:${bgImage}`;
@@ -70,7 +70,7 @@
           document.querySelector('.bg').style.opacity = 1;
         }
       }
-      else if (item.fields.image.fields.file.contentType === 'video/mp4') {
+      else if (item.fields && item.fields.image.fields.file.contentType === 'video/mp4') {
         var videoSrc = item.fields.image.fields.file.url;
         var video = document.createElement('video');
         // 👇️ Remote file
