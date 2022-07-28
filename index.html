@@ -51,7 +51,6 @@
     client.getEntries().then(function (entries) {
       var items = entries.items;
       var item = items[Math.floor(Math.random() * items.length)];
-      var bgImage = item.fields.image.fields.file.url;
 
       var email;
       items.forEach(item => {
@@ -63,6 +62,7 @@
 
 
       if (item.fields.image.fields.file.contentType === 'image/jpeg') {
+        var bgImage = item.fields.image.fields.file.url;
         var img = new Image();
         img.src = `https:${bgImage}`;
         img.onload = function () {
