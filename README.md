@@ -9,15 +9,16 @@
 8.) Upload image or video <br />
 
 ## To add email field
-1.) Click Content Type
-2.) Add "email" under name
-3.) Click "Add field"
-4.) Click "Text
-5.) Enter "email" under Name
-6.) Click Create
-7.) Click "Content" on top of Nav Bar
-8.) Click Add Entry on top right
-9.) Enter email address 
+1.) Click Content Type<br/>
+2.) Add "email" under name<br/>
+3.) Click "Add field"<br/>
+4.) Click "Text<br/>
+5.) Enter "email" under Name<br/>
+6.) Click Create<br/>
+7.) Click "Content" on top of Nav Bar<br/>
+8.) Click Add Entry on top right<br/>
+9.) Enter email address<br/>
+
 ## To get API keys
 1.) Click Settings <br/>
 2.) Click API Keys <br/>
