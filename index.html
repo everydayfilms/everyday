@@ -63,8 +63,8 @@
       console.log(items);
       var item = items[Math.floor(Math.random() * items.length)];
 
-      if (item.fields.image.fields.file.contentType === 'image/jpeg') {
-        var bgImage = item.fields.image.fields.file.url;
+      if (item.fields.background.fields.file.contentType === 'image/jpeg' || item.fields.background.fields.file.contentType === 'image/png') {
+        var bgImage = item.fields.background.fields.file.url;
         var img = new Image();
         img.src = `https:${bgImage}`;
         img.onload = function () {
@@ -72,7 +72,7 @@
           document.querySelector('.bg').style.opacity = 1;
         }
       }
-      else if (item.fields.image.fields.file.contentType === 'video/mp4') {
+      else if (item.fields.background.fields.file.contentType === 'video/mp4') {
         var videoSrc = item.fields.image.fields.file.url;
         var video = document.createElement('video');
         // 👇️ Remote file
