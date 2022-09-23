@@ -73,7 +73,7 @@
         }
       }
       else if (item.fields.background.fields.file.contentType === 'video/mp4') {
-        var videoSrc = item.fields.image.fields.file.url;
+        var videoSrc = item.fields.background.fields.file.url;
         var video = document.createElement('video');
         // 👇️ Remote file
         video.src = `https://${videoSrc}`
